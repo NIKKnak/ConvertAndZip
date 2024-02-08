@@ -11,13 +11,9 @@ namespace ConvertAndZip
 {
     public class CopyTextFile
     {
-
-
         public void ConvertFile(string fileName)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
 
-            fileName = openFileDialog.FileName;
             string fileNameToFind = "1.fpage"; // искомый файл
 
             using (ZipArchive archive = ZipFile.OpenRead(fileName))
@@ -47,24 +43,19 @@ namespace ConvertAndZip
                                         writer.WriteLine(unicodeString);
                                     }
                                 }
-
-                                MessageBox.Show("Файл успешно создан!");
+                                //MessageBox.Show("Файл успешно создан!");
                             }
                             else
                             {
                                 MessageBox.Show("UnicodeString не найден!");
                             }
-
                             break;
                         };
-
-
-                        
                     }
                 }
             }
+            File.Delete(fileName);
         }
-
     }
 
 

@@ -10,35 +10,58 @@ namespace ConvertAndZip
         {
             InitializeComponent();
         }
-        
+
         private void button1_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog dialog = new FolderBrowserDialog();
 
+
+
+
+
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                string pathDirrectory = dialog.SelectedPath;
 
-                string[] dirrectoriesName = Directory.GetDirectories(pathDirrectory);
-                string[] fileNames = Directory.GetFiles(pathDirrectory);
+                    string pathDirrectory = dialog.SelectedPath;
 
-                string dirrectoryName = Path.GetFileName(dirrectoriesName[0]);
-                string fileName = Path.GetFileNameWithoutExtension(fileNames[0]);
-
-
-
-                if (dirrectoryName == fileName)
+                while (Directory.GetFiles(pathDirrectory, "*.xps").Length > 0)
                 {
-                    CopyTextFile copyTextFile = new CopyTextFile();
-                    copyTextFile.ConvertFile(fileName);
+
+
+
+                    string[] dirrectoriesName = Directory.GetDirectories(pathDirrectory);
+                    string[] fileNames = Directory.GetFiles(pathDirrectory);
+
+                    string dirrectoryName = Path.GetFileName(dirrectoriesName[0]);
+                    string fileName = Path.GetFileNameWithoutExtension(fileNames[0]);
+
+                    string fileNameForTransmission = fileNames[0];// костыль
+
+                    if (dirrectoryName == fileName)
+                    {
+                        CopyTextFile copyTextFile = new CopyTextFile();
+                        copyTextFile.ConvertFile(fileNameForTransmission);
+
+                        ZipArhiv zipArhiv = new ZipArhiv();
+                        zipArhiv.zip(pathDirrectory);
+
+                    }
+
+
+
                 }
+
+
+
+                
+
+
+                
+
+
 
             }
 
-
-
-
-            
 
 
 
