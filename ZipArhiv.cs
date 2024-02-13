@@ -12,10 +12,7 @@ namespace ConvertAndZip
     {
 
         public void zip(string pathDirrectory)
-        {
-            
-                
-
+        {                        
                 // Получаем список файлов и подпапок в выбранной директории
                 string[] files1 = Directory.GetFiles(pathDirrectory);
                 string[] directories1 = Directory.GetDirectories(pathDirrectory);
